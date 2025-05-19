@@ -1,0 +1,86 @@
+/* Custom styles for QuickCart */
+
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer always at bottom */
+footer {
+    margin-top: auto;
+}
+
+/* Product images */
+.product-image {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Card hover effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: #3a86ff;
+    border-color: #3a86ff;
+}
+
+.btn-primary:hover {
+    background-color: #2667e6;
+    border-color: #2667e6;
+}
+
+/* Category badges */
+.badge.bg-secondary {
+    background-color: #6c757d;
+    font-weight: normal;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+}
+
+/* Price text */
+.text-primary {
+    color: #3a86ff !important;
+}
+
+/* Navigation active link */
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Breadcrumb styling */
+.breadcrumb {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+
+/* Product grid spacing */
+.row > .col-md-4 {
+    margin-bottom: 2rem;
+}
+
+/* Stock badge positioning */
+.card .badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-image {
+        max-height: 300px;
+    }
+}

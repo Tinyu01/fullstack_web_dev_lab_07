@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="${'QuickCart - ' + product.name}">QuickCart - Product Detail</title>
+</head>
+<body>
+    <section>
+        <!-- Breadcrumbs navigation -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+                <li class="breadcrumb-item active" aria-current="page" th:text="${product.name}">Product Name</li>
+            </ol>
+        </nav>
+        
+        <div class="row mt-4">
+            <!-- Product image -->
+            <div class="col-md-5">
+                <div class="bg-light text-center p-4 rounded">
+                    <img th:src="${product.imageUrl}" class="img-fluid" 
+                         style="max-height: 400px; object-fit: contain;"
+                         alt="Product Image" src="/images/placeholder.jpg">
+                </div>
+            </div>
+            
+            <!-- Product details -->
+            <div class="col-md-7">
+                <h1 th:text="${product.name}">Product Name</h1>
+                
+                <div class="mb-3">
+                    <span class="badge bg-secondary" th:text="${product.category}">Category</span>
+                    <span class="badge bg-success" th:if="${product.stockQuantity > 0}">In Stock</span>
+                    <span class="badge bg-danger" th:unless="${product.stockQuantity > 0}">Out of Stock</span>
+                </div>
+                
+                <h2 class="text-primary mb-3" th:text="${'$' + product.price}">$0.00</h2>
+                
+                <p class="lead" th:text="${product.description}">
+                    Detailed product description goes here...
+                </p>
+                
+                <div class="mb-4">
+                    <p class="mb-1">
+                        <strong>Stock:</strong> 
+                        <span th:text="${product.stockQuantity + ' units available'}">0 units available</span>
+                    </p>
+                    <p class="mb-1">
+                        <strong>Category:</strong> 
+                        <a th:href="@{/products/category(name=${product.category})}" 
+                           th:text="${product.category}">Category</a>
+                    </p>
+                    <p class="mb-1">
+                        <strong>Product ID:</strong> <span th:text="${product.id}">0</span>
+                    </p>
+                </div>
+                
+                <!-- Add to Cart form -->
+                <form th:if="${product.stockQuantity > 0}">
+                    <div class="row g-3 align-items-center mb-3">
+                        <div class="col-auto">
+                            <label for="quantity" class="col-form-label">Quantity:</label>
+                        </div>
+                        <div class="col-2">
+                            <input type="number" id="quantity" class="form-control" min="1" 
+                                   th:max="${product.stockQuantity}" value="1">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="alert alert-warning" th:unless="${product.stockQuantity > 0}">
+                    This product is currently out of stock. Please check back later.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related products section (placeholder for future implementation) -->
+        <div class="mt-5">
+            <h3>You might also like</h3>
+            <p class="text-muted">Related products will be displayed here in future implementations.</p>
+        </div>
+    </section>
+</body>
+</html>
